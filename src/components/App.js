@@ -1,33 +1,15 @@
 //импорт апп цсс
 import React from 'react';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 export default function App() {
     return (
         <div className="root">
-            <header className="header">
-                <img src={"../images/logoMesto.svg"} alt="Логотип сайта место" className="header__logo" />
-            </header>
-
-            <main className="main">
-                <section className="profile">
-                    <div className="profile__container">
-                        <div className="profile__avatar-wrap"><img className="profile__avatar" alt="Фото пользователя: " />
-                        </div>
-                        <div className="profile__info">
-                            <div className="profile__wrap">
-                                <h1 className="profile__name"></h1>
-                                <button className="profile__edit-button" type="button"></button>
-                            </div>
-                            <p className="profile__bio"></p>
-                        </div>
-                        <button className="profile__add-button" type="button"></button>
-                    </div>
-                </section>
-
-                <section className="content">
-                </section>
-
-            </main>
+            <Header />
+            <Main />
+            <Footer />
 
             <section className="popup popup_profile">
 
@@ -97,11 +79,6 @@ export default function App() {
                     <h2 className="popup__img-label"></h2>
                 </div>
             </section>
-
-
-            <footer className="footer">
-                <p className="footer__info">&copy; 2020 Mesto Russia</p>
-            </footer>
 
         </div>
     );
