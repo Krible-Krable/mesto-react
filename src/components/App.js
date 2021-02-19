@@ -8,10 +8,14 @@ export default function App() {
     return (
         <div className="root">
             <Header />
-            <Main />
+            <Main
+               // onEditAvatar={handleEditAvatarClick}
+            // {handleEditProfileClick}
+            // {handleAddPlaceClick}
+            />
             <Footer />
 
-            <section className="popup popup_profile">
+            {/* <section className="popup popup_profile">
 
                 <div className="popup__container">
                     <button className="popup__button-close" type="button"></button>
@@ -78,7 +82,7 @@ export default function App() {
                     <img className="popup__img" />
                     <h2 className="popup__img-label"></h2>
                 </div>
-            </section>
+            </section> */}
 
         </div>
     );
