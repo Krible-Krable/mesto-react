@@ -31,6 +31,12 @@ export default function App(props) {
         sethandleAddPlaceClick(true);
     }
 
+    function closeAllPopups() {
+        setEditAvatarClick(false);
+        setEditProfileOpen(false);
+        sethandleAddPlaceClick(false);
+    }
+
     return (
         <div className="root">
             <Header />
@@ -43,6 +49,7 @@ export default function App(props) {
                 name="profile"
                 title="Редактировать профиль"
                 isOpen={isEditProfileOpen}
+                onClose={closeAllPopups}
             >
                 <input type="text" className="popup__input popup__input_type_name" id="current-name"
                     placeholder="Ваше имя и фамилия" name="profile__name" required minLength="2" maxLength="40" />
@@ -56,6 +63,7 @@ export default function App(props) {
                 name="card"
                 title="Новое место"
                 isOpen={ishandleAddPlaceClick}
+                onClose={closeAllPopups}
             >{props.children}
                 <input type="text" className="popup__input popup__input_type_place" id="current-place"
                     placeholder="Название" name="popup__place" required minLength="2" maxLength="30" />
@@ -69,6 +77,7 @@ export default function App(props) {
                 name="edit-avatar"
                 title="Обновить аватар"
                 isOpen={isEditAvatarClick}
+                onClose={closeAllPopups}
             >
                 <input type="url" className="popup__input popup__input_type_src" id="current-avatar"
                     placeholder="ссылка/источник" name="popup__avatar" required />
@@ -78,6 +87,7 @@ export default function App(props) {
             <PopupWithForm
                 name="get-delete"
                 title="Вы уверены?"
+                onClose={closeAllPopups}
             >
                 <button type="submit" value="Да" className="popup__button popup__button-delete">Да</button>
             </PopupWithForm>
