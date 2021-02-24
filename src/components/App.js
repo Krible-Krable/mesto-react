@@ -7,19 +7,28 @@ import ImagePopup from './ImagePopup';
 import Footer from './Footer';
 
 export default function App(props) {
+
+    let [isEditProfileOpen, setEditProfileOpen] = React.useState(false);
+    let [isEditAvatarClick, setEditAvatarClick] = React.useState(false);
+    let [ishandleAddPlaceClick, sethandleAddPlaceClick] = React.useState(false);
+
+
     function handleEditAvatarClick() {
-        const popup = document.querySelector('.popup_edit-avatar');
-        popup.classList.add('popup_is-opened');
+        // const popup = document.querySelector('.popup_edit-avatar');
+        // popup.classList.add('popup_is-opened');
+        setEditAvatarClick(true);
     }
 
     function handleEditProfileClick() {
-        const popup = document.querySelector('.popup_profile');
-        popup.classList.add('popup_is-opened');
+        // const popup = document.querySelector('.popup_profile');
+        // popup.classList.add('popup_is-opened');
+        setEditProfileOpen(true);
     }
 
     function handleAddPlaceClick() {
-        const popup = document.querySelector('.popup_card');
-        popup.classList.add('popup_is-opened');
+        // const popup = document.querySelector('.popup_card');
+        // popup.classList.add('popup_is-opened');
+        sethandleAddPlaceClick(true);
     }
 
     return (
@@ -33,6 +42,7 @@ export default function App(props) {
             <PopupWithForm
                 name="profile"
                 title="Редактировать профиль"
+                isOpen={isEditProfileOpen}
             >
                 <input type="text" className="popup__input popup__input_type_name" id="current-name"
                     placeholder="Ваше имя и фамилия" name="profile__name" required minLength="2" maxLength="40" />
@@ -45,6 +55,7 @@ export default function App(props) {
             <PopupWithForm
                 name="card"
                 title="Новое место"
+                isOpen={ishandleAddPlaceClick}
             >{props.children}
                 <input type="text" className="popup__input popup__input_type_place" id="current-place"
                     placeholder="Название" name="popup__place" required minLength="2" maxLength="30" />
@@ -57,6 +68,7 @@ export default function App(props) {
             <PopupWithForm
                 name="edit-avatar"
                 title="Обновить аватар"
+                isOpen={isEditAvatarClick}
             >
                 <input type="url" className="popup__input popup__input_type_src" id="current-avatar"
                     placeholder="ссылка/источник" name="popup__avatar" required />
