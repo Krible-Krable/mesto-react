@@ -4,6 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import Card from './Card';
 import Footer from './Footer';
 
 export default function App(props) {
@@ -11,6 +12,8 @@ export default function App(props) {
     let [isEditProfileOpen, setEditProfileOpen] = React.useState(false);
     let [isEditAvatarClick, setEditAvatarClick] = React.useState(false);
     let [ishandleAddPlaceClick, sethandleAddPlaceClick] = React.useState(false);
+
+    let [selectedCard, setSelectedCard] = React.useState();
 
 
     function handleEditAvatarClick() {
@@ -31,10 +34,15 @@ export default function App(props) {
         sethandleAddPlaceClick(true);
     }
 
+    function handleCardClick() {
+        setSelectedCard(props.card);
+    }
+
     function closeAllPopups() {
         setEditAvatarClick(false);
         setEditProfileOpen(false);
         sethandleAddPlaceClick(false);
+        setSelectedCard();
     }
 
     return (
@@ -69,7 +77,7 @@ export default function App(props) {
                     placeholder="Название" name="popup__place" required minLength="2" maxLength="30" />
                 <span id="current-place-error"></span>
                 <input type="url" className="popup__input popup__input_type_link" id="sign-in-link"
-                    placeholder="Ссылка на картинку" name="popap__link" required />
+                    placeholder="Ссылка на картинку" name="popap__link" required src={selectedCard} />
                 <span id="sign-in-link-error"></span>
                 <button type="submit" value="Создать" className="popup__button popup__button-save">Создать</button>
             </PopupWithForm>
@@ -92,7 +100,10 @@ export default function App(props) {
                 <button type="submit" value="Да" className="popup__button popup__button-delete">Да</button>
             </PopupWithForm>
             <Footer />
-            <ImagePopup />
+            <ImagePopup
+                isOpen={handleCardClick}
+                onClose={closeAllPopups}
+            />
         </div>
     );
 }

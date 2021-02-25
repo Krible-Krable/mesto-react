@@ -1,5 +1,6 @@
 import React from 'react';
 import { api } from './../utils/Api';
+import Card from './Card';
 
 export default function Main(props) {
     let [userName, setUserName] = React.useState();
@@ -25,18 +26,8 @@ export default function Main(props) {
                 console.log(err, 'Ошибка при сохранении данных');
             });
     });
-    const cardsJSX = cards.map(card =>
-        <article class="card">
-            <button class="card__button-delete card__button-delete_hidden" type="button"></button>
-            <img class="card__foto" src={card.link} alt={card.name} />
-            <div class="card__footer">
-                <h2 class="card__heading">{card.name}</h2>
-                <div class="card__button-like_wrap">
-                    <button class="card__button-like" type="button"></button>
-                    <div class="card__button-like_count">1</div>
-                </div>
-            </div>
-        </article>);
+
+    const cardsJSX = cards.map(card => <Card {...card} key={card._id} />);
 
     return (
         <>
