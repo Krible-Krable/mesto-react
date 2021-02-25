@@ -5,6 +5,7 @@ export default function Main(props) {
     let [userName, setUserName] = React.useState();
     let [userDescription, setUserDescription] = React.useState();
     let [userAvatar, setUserAvatar] = React.useState();
+    let [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
         Promise.all([
@@ -18,11 +19,24 @@ export default function Main(props) {
                 setUserName(user.name);
                 setUserDescription(user.about);
                 setUserAvatar(user.avatar);
+                setCards(data);
             })
             .catch(err => {
                 console.log(err, 'Ошибка при сохранении данных');
             });
     });
+    const cardsJSX = cards.map(card =>
+        <article class="card">
+            <button class="card__button-delete card__button-delete_hidden" type="button"></button>
+            <img class="card__foto" src={card.link} alt={card.name} />
+            <div class="card__footer">
+                <h2 class="card__heading">{card.name}</h2>
+                <div class="card__button-like_wrap">
+                    <button class="card__button-like" type="button"></button>
+                    <div class="card__button-like_count">1</div>
+                </div>
+            </div>
+        </article>);
 
     return (
         <>
@@ -46,6 +60,7 @@ export default function Main(props) {
                 </section>
 
                 <section className="content">
+                    {cardsJSX}
                 </section>
 
             </main >
