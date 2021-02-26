@@ -14,9 +14,6 @@ export default function Main(props) {
             api.getInitialCards()
         ])
             .then(([user, data]) => {
-                // userInfo.saveUserInfo({ name: user.name, bio: user.about, id: user._id });
-                // userInfo.saveUserAvatar(user.avatar);
-                // section.renderCards(data);
                 setUserName(user.name);
                 setUserDescription(user.about);
                 setUserAvatar(user.avatar);
@@ -27,7 +24,7 @@ export default function Main(props) {
             });
     });
 
-    const cardsJSX = cards.map(card => <Card {...card} key={card._id} />);
+    const cardsJSX = cards.map(card => <Card card={card} key={card._id} onCardClick={props.onCardClick} />);
 
     return (
         <>
@@ -53,7 +50,6 @@ export default function Main(props) {
                 <section className="content">
                     {cardsJSX}
                 </section>
-
             </main >
         </>
     );

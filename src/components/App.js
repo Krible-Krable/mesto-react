@@ -4,7 +4,6 @@ import Header from './Header';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
-import Card from './Card';
 import Footer from './Footer';
 
 export default function App(props) {
@@ -17,32 +16,26 @@ export default function App(props) {
 
 
     function handleEditAvatarClick() {
-        // const popup = document.querySelector('.popup_edit-avatar');
-        // popup.classList.add('popup_is-opened');
         setEditAvatarClick(true);
     }
 
     function handleEditProfileClick() {
-        // const popup = document.querySelector('.popup_profile');
-        // popup.classList.add('popup_is-opened');
         setEditProfileOpen(true);
     }
 
     function handleAddPlaceClick() {
-        // const popup = document.querySelector('.popup_card');
-        // popup.classList.add('popup_is-opened');
         sethandleAddPlaceClick(true);
     }
 
-    function handleCardClick() {
-        setSelectedCard(props.card);
+    function handleCardClick(card) {
+        setSelectedCard(card);
     }
 
     function closeAllPopups() {
         setEditAvatarClick(false);
         setEditProfileOpen(false);
         sethandleAddPlaceClick(false);
-        setSelectedCard();
+        setSelectedCard(null);
     }
 
     return (
@@ -52,6 +45,7 @@ export default function App(props) {
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
                 onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
             />
             <PopupWithForm
                 name="profile"
@@ -101,7 +95,7 @@ export default function App(props) {
             </PopupWithForm>
             <Footer />
             <ImagePopup
-                isOpen={handleCardClick}
+                card={selectedCard}
                 onClose={closeAllPopups}
             />
         </div>
