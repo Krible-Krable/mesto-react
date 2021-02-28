@@ -1,11 +1,10 @@
+import React from 'react';
+
 export default function PopupWithForm(props) {
-    let popupClassName = `popup popup_${props.name}`;
-    if (props.isOpen) {
-        popupClassName += ' popup_is-opened';
-    }
+
     return (
         <>
-            <section className={popupClassName}>
+            <section className={`popup popup_type_${props.name} ${props.isOpen && 'popup_is-opened'}`}>
                 <div className="popup__container">
                     <button className="popup__button-close" type="button" onClick={props.onClose}></button>
                     <form className="popup__form" name={props.name} noValidate>

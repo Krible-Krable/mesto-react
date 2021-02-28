@@ -1,3 +1,4 @@
+import React from 'react';
 import headerLogo from './../images/logoMesto.svg';
 
 export default function Header() {

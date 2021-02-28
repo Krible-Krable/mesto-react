@@ -6,13 +6,13 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import Footer from './Footer';
 
-export default function App(props) {
+export default function App() {
 
-    let [isEditProfileOpen, setEditProfileOpen] = React.useState(false);
-    let [isEditAvatarClick, setEditAvatarClick] = React.useState(false);
-    let [ishandleAddPlaceClick, sethandleAddPlaceClick] = React.useState(false);
+    const [isEditProfileOpen, setEditProfileOpen] = React.useState(false);
+    const [isEditAvatarClick, setEditAvatarClick] = React.useState(false);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
-    let [selectedCard, setSelectedCard] = React.useState();
+    const [selectedCard, setSelectedCard] = React.useState(null);
 
 
     function handleEditAvatarClick() {
@@ -24,7 +24,7 @@ export default function App(props) {
     }
 
     function handleAddPlaceClick() {
-        sethandleAddPlaceClick(true);
+        setIsAddPlacePopupOpen(true);
     }
 
     function handleCardClick(card) {
@@ -34,7 +34,7 @@ export default function App(props) {
     function closeAllPopups() {
         setEditAvatarClick(false);
         setEditProfileOpen(false);
-        sethandleAddPlaceClick(false);
+        setIsAddPlacePopupOpen(false);
         setSelectedCard(null);
     }
 
@@ -64,9 +64,9 @@ export default function App(props) {
             <PopupWithForm
                 name="card"
                 title="Новое место"
-                isOpen={ishandleAddPlaceClick}
+                isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
-            >{props.children}
+            >
                 <input type="text" className="popup__input popup__input_type_place" id="current-place"
                     placeholder="Название" name="popup__place" required minLength="2" maxLength="30" />
                 <span id="current-place-error"></span>
