@@ -7,44 +7,9 @@ export default function Main(props) {
   // const { card } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-
-  function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
-  }
-
-  function handleCardDelete(card) {
-    const isOwn = card.owner._id === currentUser._id;
-
-    api.changeCardDelete(card._id, isOwn).then((newCard) => {
-      setCards((card) =>
-        [...card].filter((c) => (c._id === card._id ? newCard : c))
-      );
-    });
-  }
-
-  React.useEffect(() => {
-    Promise.all([api.getInitialCards()]) //api.getUser()
-      .then(([data]) => {
-        //user
-        // setUserName(user.name);
-        // setUserDescription(user.about);
-        // setUserAvatar(user.avatar);
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err, "Ошибка при сохранении данных");
-      });
-  }, []);
+  //   const [userName, setUserName] = React.useState("");
+  //   const [userDescription, setUserDescription] = React.useState("");
+  //   const [userAvatar, setUserAvatar] = React.useState("");
 
   return (
     <main className="main">
@@ -54,13 +19,11 @@ export default function Main(props) {
             <img
               className="profile__avatar"
               alt="Фото пользователя: "
-              //   src={userAvatar}
               src={currentUser.avatar}
             />
           </div>
           <div className="profile__info">
             <div className="profile__wrap">
-              {/* <h1 className="profile__name">{userName}</h1> */}
               <h1 className="profile__name">{currentUser.name}</h1>
               <button
                 className="profile__edit-button"
@@ -68,7 +31,6 @@ export default function Main(props) {
                 onClick={props.onEditProfile}
               ></button>
             </div>
-            {/* <p className="profile__bio">{userDescription}</p> */}
             <p className="profile__bio">{currentUser.about}</p>
           </div>
           <button
@@ -78,15 +40,14 @@ export default function Main(props) {
           ></button>
         </div>
       </section>
-
       <section className="content">
-        {cards.map((card) => (
+        {props.cards.map((card) => (
           <Card
             card={card}
             key={card._id}
             onCardClick={props.onCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardLike={props.onCardLike}
+            onCardDelete={props.onCardDelete}
           />
         ))}
       </section>

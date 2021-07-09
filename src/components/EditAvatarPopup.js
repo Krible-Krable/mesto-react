@@ -8,9 +8,7 @@ export default function EditAvatarPopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdateAvatar({
-      avatar: avatarInput.current.value,
-    });
+    props.onUpdateAvatar(avatarInput.current.value);
   }
   return (
     <PopupWithForm
