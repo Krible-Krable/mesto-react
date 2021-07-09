@@ -4,12 +4,17 @@ import Card from "./Card";
 import { CurrentUserContext } from "./../context/CurrentUserContext.js";
 
 export default function Main(props) {
-  // const { card } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
-  //   const [userName, setUserName] = React.useState("");
-  //   const [userDescription, setUserDescription] = React.useState("");
-  //   const [userAvatar, setUserAvatar] = React.useState("");
+  // function handleCardDelete(card) {
+  //   const isOwn = card.owner._id === currentUser._id;
+
+  //   api.changeCardDelete(card._id, isOwn).then((newCard) => {
+  //     setCards((card) =>
+  //       [...card].filter((c) => (c._id === card._id ? newCard : c))
+  //     );
+  //   });
+  // }
 
   return (
     <main className="main">

@@ -28,7 +28,6 @@ export default function Card(props) {
 
   return (
     <article className="card">
-      {/* card__button-delete_hidden"*/}
       <button
         // className="card__button-delete"
         className={cardDeleteButtonClassName}
