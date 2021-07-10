@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import { api } from "../utils/api";
+import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 export default function App() {

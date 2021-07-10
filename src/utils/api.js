@@ -108,7 +108,9 @@ export class Api {
   }
 }
 
-export const api = new Api({
+const api = new Api({
   url: "https://mesto.nomoreparties.co/v1",
   token: "ae0317fc-6951-4637-95ad-130db5499c77",
 });
+
+export default api;
