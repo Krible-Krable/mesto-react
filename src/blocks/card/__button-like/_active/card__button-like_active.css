@@ -1,5 +1,5 @@
 .card__button-like_active {
-  background: url("./../../../../images/likeBlack.svg") center;
+  background: url("./../../../images/likeBlack.svg") center;
   background-repeat: no-repeat;
   box-sizing: unset;
   border: none;
