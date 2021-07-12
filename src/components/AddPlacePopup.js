@@ -15,7 +15,7 @@ export default function AddPlacePopup(props) {
       name="card"
       title="Новое место"
       isOpen={props.isOpen}
-      onClose={props.closeAllPopups}
+      onClose={props.onClose}
       onSubmit={handleSubmit}
     >
       <input
