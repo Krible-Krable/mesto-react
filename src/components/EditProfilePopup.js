@@ -36,7 +36,7 @@ export default function EditProfilePopup(props) {
     >
       <input
         type="text"
-        value={name}
+        value={name || ""}
         onChange={onChangeName}
         className="popup__input popup__input_type_name"
         id="current-name"
@@ -49,7 +49,7 @@ export default function EditProfilePopup(props) {
       <span id="current-name-error"></span>
       <input
         type="text"
-        value={description}
+        value={description || ""}
         onChange={onChangeDescription}
         className="popup__input popup__input_type_bio"
         id="current-bio"

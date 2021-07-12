@@ -18,7 +18,7 @@ export default function App() {
 
   const [selectedCard, setSelectedCard] = React.useState(null);
 
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
@@ -36,9 +36,14 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    api.getUser().then((user) => {
-      setCurrentUser(user);
-    });
+    api
+      .getUser()
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
+      });
   }, []);
 
   function handleEditAvatarClick() {
@@ -58,20 +63,30 @@ export default function App() {
   }
 
   function handleUpdateUser(name, about) {
-    api.editDataProfile(name, about).then((user) => {
-      setCurrentUser(user);
-      closeAllPopups();
-    });
+    api
+      .editDataProfile(name, about)
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
+      });
   }
 
   function handleUpdateAvatar(avatar) {
-    api.editAvatar(avatar).then(() => {
-      setCurrentUser({
-        ...currentUser,
-        avatar,
+    api
+      .editAvatar(avatar)
+      .then(() => {
+        setCurrentUser({
+          ...currentUser,
+          avatar,
+        });
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
       });
-      closeAllPopups();
-    });
   }
 
   function handleCardLike(card) {
@@ -79,24 +94,41 @@ export default function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
+      });
   }
 
   function handleCardDelete(card) {
     const isOwn = card.owner._id === currentUser._id;
 
-    api.changeCardDelete(card._id, isOwn).then(() => {
-      setCards(cards.filter((c) => c._id !== card._id));
-    });
+    api
+      .changeCardDelete(card._id, isOwn)
+      .then(() => {
+        setCards(cards.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
+      });
   }
 
   function handleAddPlaceSubmit(name, link) {
-    api.addNewCard(name, link).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    });
+    api
+      .addNewCard(name, link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err, "Ошибка при сохранении данных");
+      });
   }
 
   function closeAllPopups() {
