@@ -2,13 +2,13 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup(props) {
-  const mestoInput = React.useRef(null);
-  const srcMestoInput = React.useRef(null);
+  const placeInput = React.useRef(null);
+  const srcPlaceInput = React.useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onAddPlace(mestoInput.current.value, srcMestoInput.current.value);
+    props.onAddPlace(placeInput.current.value, srcPlaceInput.current.value);
   }
   return (
     <PopupWithForm
@@ -24,7 +24,7 @@ export default function AddPlacePopup(props) {
         id="current-place"
         placeholder="Название"
         name="popup__place"
-        ref={mestoInput}
+        ref={placeInput}
         required
         minLength="2"
         maxLength="30"
@@ -36,7 +36,7 @@ export default function AddPlacePopup(props) {
         id="sign-in-link"
         placeholder="Ссылка на картинку"
         name="popap__link"
-        ref={srcMestoInput}
+        ref={srcPlaceInput}
         required
         // src={selectedCard}
       />
